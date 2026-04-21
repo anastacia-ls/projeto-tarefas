@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tarefas — Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="src/style.css" />
+</head>
+<body class="auth-page">
+
+    <div class="auth-bg">
+        <div class="auth-blob blob-1"></div>
+        <div class="auth-blob blob-2"></div>
+        <div class="auth-blob blob-3"></div>
+    </div>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-logo">
+                <span class="logo-icon">✦</span>
+                <span class="logo-text">tarefas</span>
+            </div>
+
+            <div class="auth-tabs">
+                <button class="auth-tab active" id="tabLogin" onclick="switchTab('login')">Entrar</button>
+                <button class="auth-tab" id="tabRegisto" onclick="switchTab('registo')">Registar</button>
+            </div>
+
+            <div class="auth-form" id="formLogin">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" placeholder="o.teu@email.com" autocomplete="email" />
+                </div>
+                <div class="form-group">
+                    <label>Palavra-passe</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password" />
+                </div>
+                <div class="feedback-msg" id="loginFeedback"></div>
+                <button class="btn-primary" id="btnLogin" onclick="login()">
+                    <span>Entrar</span>
+                    <span class="btn-arrow">→</span>
+                </button>
+            </div>
+
+            <div class="auth-form hidden" id="formRegisto">
+                <div class="form-group">
+                    <label>Nome</label>
+                    <input type="text" id="registoNome" placeholder="O teu nome" autocomplete="name" />
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="registoEmail" placeholder="o.teu@email.com" autocomplete="email" />
+                </div>
+                <div class="form-group">
+                    <label>Palavra-passe</label>
+                    <input type="password" id="registoPassword" placeholder="Mínimo 6 caracteres" autocomplete="new-password" />
+                </div>
+                <div class="feedback-msg" id="registoFeedback"></div>
+                <button class="btn-primary" id="btnRegisto" onclick="registar()">
+                    <span>Criar conta</span>
+                    <span class="btn-arrow">→</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="src/auth.js"></script>
+</body>
+</html>

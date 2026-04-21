@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tarefas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="src/style.css" />
+</head>
+<body class="app-page">
+
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <span class="logo-icon">✦</span>
+            <span class="logo-text">tarefas</span>
+        </div>
+        <nav class="sidebar-nav">
+            <button class="nav-btn active" data-filter="todas" onclick="setFiltro('todas', this)">
+                <span class="nav-icon">◈</span> Todas
+                <span class="nav-count" id="countTodas">0</span>
+            </button>
+            <button class="nav-btn" data-filter="pendente" onclick="setFiltro('pendente', this)">
+                <span class="nav-icon">○</span> Por fazer
+                <span class="nav-count" id="countPendente">0</span>
+            </button>
+            <button class="nav-btn" data-filter="concluida" onclick="setFiltro('concluida', this)">
+                <span class="nav-icon">●</span> Concluídas
+                <span class="nav-count" id="countConcluida">0</span>
+            </button>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-avatar" id="userAvatar">?</div>
+                <div class="user-details">
+                    <span class="user-name" id="userName">—</span>
+                    <span class="user-email" id="userEmail">—</span>
+                </div>
+            </div>
+            <button class="btn-logout" onclick="logout()" title="Sair">⎋</button>
+        </div>
+    </aside>
+
+    <main class="app-main">
+        <header class="app-header">
+            <div class="header-left">
+                <h1 id="headerTitulo">Todas as tarefas</h1>
+                <p class="header-sub" id="headerSub">A carregar...</p>
+            </div>
+            <div class="header-right">
+                <div class="search-wrap">
+                    <span class="search-icon">⌕</span>
+                    <input type="text" id="searchInput" placeholder="Pesquisar tarefas..." oninput="pesquisar(this.value)" />
+                </div>
+                <button class="btn-nova" onclick="abrirModal()">+ Nova tarefa</button>
+            </div>
+        </header>
+
+        <div class="categoria-bar">
+            <button class="cat-btn active" onclick="setCategoria('', this)">Todas</button>
+            <button class="cat-btn" onclick="setCategoria('trabalho', this)">💼 Trabalho</button>
+            <button class="cat-btn" onclick="setCategoria('pessoal', this)">🏠 Pessoal</button>
+            <button class="cat-btn" onclick="setCategoria('estudo', this)">📚 Estudo</button>
+            <button class="cat-btn" onclick="setCategoria('outro', this)">🔖 Outro</button>
+        </div>
+
+        <div class="tasks-area" id="tasksArea">
+            <div class="loading-state" id="loadingState">
+                <div class="loading-spinner"></div>
+                <p>A carregar tarefas...</p>
+            </div>
+            <div class="empty-state hidden" id="emptyState">
+                <div class="empty-icon">✦</div>
+                <p>Sem tarefas aqui.</p>
+                <button class="btn-nova-sm" onclick="abrirModal()">Criar a primeira</button>
+            </div>
+            <div class="tasks-grid" id="tasksGrid"></div>
+        </div>
+    </main>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <div class="modal-overlay hidden" id="modalOverlay" onclick="fecharModalFora(event)">
+        <div class="modal-card" id="modalCard">
+            <div class="modal-header">
+                <h2 id="modalTitulo">Nova tarefa</h2>
+                <button class="modal-close" onclick="fecharModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Título <span class="req">*</span></label>
+                    <input type="text" id="fTitulo" placeholder="O que tens de fazer?" maxlength="100" />
+                </div>
+                <div class="form-group">
+                    <label>Descrição</label>
+                    <textarea id="fDescricao" placeholder="Detalhes adicionais..." rows="3" maxlength="500"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Categoria</label>
+                        <select id="fCategoria">
+                            <option value="outro">🔖 Outro</option>
+                            <option value="trabalho">💼 Trabalho</option>
+                            <option value="pessoal">🏠 Pessoal</option>
+                            <option value="estudo">📚 Estudo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Prioridade</label>
+                        <select id="fPrioridade">
+                            <option value="normal">Normal</option>
+                            <option value="alta">Alta</option>
+                            <option value="baixa">Baixa</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Data limite</label>
+                    <input type="date" id="fData" />
+                </div>
+                <div class="feedback-msg" id="modalFeedback"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="fecharModal()">Cancelar</button>
+                <button class="btn-primary" id="btnGuardar" onclick="guardarTarefa()">
+                    <span id="btnGuardarTexto">Criar tarefa</span>
+                    <span class="btn-arrow">→</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="src/app.js"></script>
+</body>
+</html>
