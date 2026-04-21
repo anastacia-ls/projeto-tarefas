@@ -1,7 +1,7 @@
 /* =============================================
    TAREFAS APP — style.css
    ============================================= */
-
+ 
 :root {
     --bg: #0d0d0d;
     --surface: #161616;
@@ -22,9 +22,9 @@
     --shadow: 0 4px 24px rgba(0,0,0,0.4);
     --shadow-lg: 0 8px 48px rgba(0,0,0,0.6);
 }
-
+ 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+ 
 body {
     font-family: var(--font-body);
     background: var(--bg);
@@ -32,11 +32,11 @@ body {
     min-height: 100vh;
     line-height: 1.6;
 }
-
+ 
 /* =============================================
    AUTH PAGE
    ============================================= */
-
+ 
 .auth-page {
     display: flex;
     align-items: center;
@@ -45,35 +45,35 @@ body {
     overflow: hidden;
     position: relative;
 }
-
+ 
 .auth-bg {
     position: fixed;
     inset: 0;
     z-index: 0;
     pointer-events: none;
 }
-
+ 
 .auth-blob {
     position: absolute;
     border-radius: 50%;
     filter: blur(80px);
     opacity: 0.15;
 }
-
+ 
 .blob-1 {
     width: 500px; height: 500px;
     background: var(--accent);
     top: -100px; left: -100px;
     animation: blobFloat 8s ease-in-out infinite;
 }
-
+ 
 .blob-2 {
     width: 400px; height: 400px;
     background: #00d4ff;
     bottom: -50px; right: -80px;
     animation: blobFloat 10s ease-in-out infinite reverse;
 }
-
+ 
 .blob-3 {
     width: 300px; height: 300px;
     background: #ff4dff;
@@ -81,13 +81,13 @@ body {
     transform: translate(-50%, -50%);
     animation: blobFloat 12s ease-in-out infinite 2s;
 }
-
+ 
 @keyframes blobFloat {
     0%, 100% { transform: translate(0, 0) scale(1); }
     33% { transform: translate(30px, -20px) scale(1.05); }
     66% { transform: translate(-20px, 15px) scale(0.95); }
 }
-
+ 
 .auth-container {
     position: relative;
     z-index: 1;
@@ -95,7 +95,7 @@ body {
     max-width: 420px;
     padding: 24px;
 }
-
+ 
 .auth-card {
     background: rgba(22, 22, 22, 0.85);
     backdrop-filter: blur(20px);
@@ -104,25 +104,25 @@ body {
     padding: 40px 36px;
     box-shadow: var(--shadow-lg);
 }
-
+ 
 .auth-logo {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 32px;
 }
-
+ 
 .logo-icon {
     font-size: 28px;
     color: var(--accent);
     animation: logoPulse 3s ease-in-out infinite;
 }
-
+ 
 @keyframes logoPulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.6; }
 }
-
+ 
 .logo-text {
     font-family: var(--font-display);
     font-size: 24px;
@@ -130,7 +130,7 @@ body {
     letter-spacing: -0.5px;
     color: var(--text);
 }
-
+ 
 .auth-tabs {
     display: flex;
     position: relative;
@@ -140,7 +140,7 @@ body {
     margin-bottom: 28px;
     gap: 4px;
 }
-
+ 
 .auth-tab {
     flex: 1;
     padding: 9px;
@@ -156,21 +156,21 @@ body {
     position: relative;
     z-index: 1;
 }
-
+ 
 .auth-tab.active {
     color: var(--bg);
     background: var(--accent);
     font-weight: 600;
 }
-
+ 
 /* =============================================
    FORMS
    ============================================= */
-
+ 
 .form-group {
     margin-bottom: 16px;
 }
-
+ 
 .form-group label {
     display: block;
     font-size: 12px;
@@ -180,7 +180,7 @@ body {
     letter-spacing: 0.8px;
     margin-bottom: 6px;
 }
-
+ 
 .form-group input,
 .form-group textarea,
 .form-group select {
@@ -195,19 +195,19 @@ body {
     transition: border-color 0.2s, box-shadow 0.2s;
     outline: none;
 }
-
+ 
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {
     border-color: var(--accent);
     box-shadow: 0 0 0 3px rgba(212, 240, 0, 0.1);
 }
-
+ 
 .form-group textarea {
     resize: vertical;
     min-height: 80px;
 }
-
+ 
 .form-group select {
     cursor: pointer;
     appearance: none;
@@ -216,15 +216,15 @@ body {
     background-position: right 12px center;
     padding-right: 36px;
 }
-
+ 
 .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
 }
-
+ 
 .req { color: var(--danger); }
-
+ 
 .feedback-msg {
     font-size: 13px;
     min-height: 18px;
@@ -233,25 +233,25 @@ body {
     padding: 0;
     transition: all 0.2s;
 }
-
+ 
 .feedback-msg.error {
     color: var(--danger);
     padding: 8px 12px;
     background: rgba(255, 77, 77, 0.1);
     border: 1px solid rgba(255, 77, 77, 0.2);
 }
-
+ 
 .feedback-msg.success {
     color: var(--success);
     padding: 8px 12px;
     background: rgba(77, 255, 145, 0.1);
     border: 1px solid rgba(77, 255, 145, 0.2);
 }
-
+ 
 /* =============================================
    BUTTONS
    ============================================= */
-
+ 
 .btn-primary {
     width: 100%;
     padding: 13px 20px;
@@ -269,20 +269,20 @@ body {
     gap: 8px;
     transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
 }
-
+ 
 .btn-primary:hover {
     background: var(--accent-dark);
     box-shadow: 0 4px 16px rgba(212, 240, 0, 0.3);
 }
-
+ 
 .btn-primary:active { transform: scale(0.98); }
-
+ 
 .btn-primary:disabled {
     opacity: 0.6;
     cursor: not-allowed;
     transform: none;
 }
-
+ 
 .btn-secondary {
     padding: 11px 20px;
     background: transparent;
@@ -294,26 +294,26 @@ body {
     cursor: pointer;
     transition: border-color 0.2s, color 0.2s;
 }
-
+ 
 .btn-secondary:hover {
     border-color: var(--text-muted);
     color: var(--text);
 }
-
+ 
 .btn-arrow { font-size: 16px; }
-
+ 
 .hidden { display: none !important; }
-
+ 
 /* =============================================
    APP LAYOUT
    ============================================= */
-
+ 
 .app-page {
     display: grid;
     grid-template-columns: 240px 1fr;
     min-height: 100vh;
 }
-
+ 
 /* Sidebar */
 .sidebar {
     background: var(--surface);
@@ -325,7 +325,7 @@ body {
     top: 0;
     height: 100vh;
 }
-
+ 
 .sidebar-logo {
     display: flex;
     align-items: center;
@@ -333,17 +333,17 @@ body {
     padding: 0 8px;
     margin-bottom: 36px;
 }
-
+ 
 .sidebar-logo .logo-icon { font-size: 20px; color: var(--accent); }
 .sidebar-logo .logo-text { font-family: var(--font-display); font-weight: 800; font-size: 18px; }
-
+ 
 .sidebar-nav {
     display: flex;
     flex-direction: column;
     gap: 4px;
     flex: 1;
 }
-
+ 
 .nav-btn {
     display: flex;
     align-items: center;
@@ -359,12 +359,12 @@ body {
     transition: background 0.15s, color 0.15s;
     text-align: left;
 }
-
+ 
 .nav-btn:hover { background: var(--surface-2); color: var(--text); }
 .nav-btn.active { background: rgba(212, 240, 0, 0.1); color: var(--accent); font-weight: 500; }
-
+ 
 .nav-icon { font-size: 16px; }
-
+ 
 .nav-count {
     margin-left: auto;
     background: var(--surface-2);
@@ -373,12 +373,12 @@ body {
     font-size: 12px;
     color: var(--text-muted);
 }
-
+ 
 .nav-btn.active .nav-count {
     background: rgba(212, 240, 0, 0.15);
     color: var(--accent);
 }
-
+ 
 .sidebar-footer {
     border-top: 1px solid var(--border);
     padding-top: 16px;
@@ -386,7 +386,7 @@ body {
     align-items: center;
     gap: 10px;
 }
-
+ 
 .user-info {
     display: flex;
     align-items: center;
@@ -394,7 +394,7 @@ body {
     flex: 1;
     min-width: 0;
 }
-
+ 
 .user-avatar {
     width: 34px; height: 34px;
     border-radius: 50%;
@@ -408,13 +408,13 @@ body {
     font-size: 14px;
     flex-shrink: 0;
 }
-
+ 
 .user-details {
     display: flex;
     flex-direction: column;
     min-width: 0;
 }
-
+ 
 .user-name {
     font-size: 13px;
     font-weight: 500;
@@ -423,7 +423,7 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
+ 
 .user-email {
     font-size: 11px;
     color: var(--text-dim);
@@ -431,7 +431,7 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
+ 
 .btn-logout {
     background: transparent;
     border: 1px solid var(--border);
@@ -446,13 +446,13 @@ body {
     transition: border-color 0.2s, color 0.2s;
     flex-shrink: 0;
 }
-
+ 
 .btn-logout:hover { border-color: var(--danger); color: var(--danger); }
-
+ 
 /* =============================================
    APP MAIN
    ============================================= */
-
+ 
 .app-main {
     display: flex;
     flex-direction: column;
@@ -460,7 +460,7 @@ body {
     padding: 32px 40px;
     max-width: 1000px;
 }
-
+ 
 .app-header {
     display: flex;
     align-items: flex-start;
@@ -469,32 +469,32 @@ body {
     margin-bottom: 24px;
     flex-wrap: wrap;
 }
-
+ 
 .app-header h1 {
     font-family: var(--font-display);
     font-size: 28px;
     font-weight: 800;
     letter-spacing: -0.5px;
 }
-
+ 
 .header-sub {
     color: var(--text-muted);
     font-size: 14px;
     margin-top: 2px;
 }
-
+ 
 .header-right {
     display: flex;
     align-items: center;
     gap: 12px;
 }
-
+ 
 .search-wrap {
     position: relative;
     display: flex;
     align-items: center;
 }
-
+ 
 .search-icon {
     position: absolute;
     left: 12px;
@@ -502,7 +502,7 @@ body {
     font-size: 18px;
     pointer-events: none;
 }
-
+ 
 .search-wrap input {
     padding: 10px 14px 10px 36px;
     background: var(--surface);
@@ -515,9 +515,9 @@ body {
     outline: none;
     transition: border-color 0.2s;
 }
-
+ 
 .search-wrap input:focus { border-color: var(--accent); }
-
+ 
 .btn-nova {
     padding: 10px 18px;
     background: var(--accent);
@@ -531,12 +531,12 @@ body {
     white-space: nowrap;
     transition: background 0.2s, box-shadow 0.2s;
 }
-
+ 
 .btn-nova:hover {
     background: var(--accent-dark);
     box-shadow: 0 4px 16px rgba(212, 240, 0, 0.25);
 }
-
+ 
 .btn-nova-sm {
     padding: 8px 16px;
     background: var(--accent);
@@ -550,7 +550,7 @@ body {
     margin-top: 12px;
     transition: background 0.2s;
 }
-
+ 
 /* Categoria bar */
 .categoria-bar {
     display: flex;
@@ -558,7 +558,7 @@ body {
     margin-bottom: 24px;
     flex-wrap: wrap;
 }
-
+ 
 .cat-btn {
     padding: 6px 14px;
     background: var(--surface);
@@ -570,17 +570,17 @@ body {
     cursor: pointer;
     transition: all 0.15s;
 }
-
+ 
 .cat-btn:hover { border-color: var(--text-muted); color: var(--text); }
 .cat-btn.active {
     background: rgba(212, 240, 0, 0.1);
     border-color: var(--accent);
     color: var(--accent);
 }
-
+ 
 /* Tasks area */
 .tasks-area { flex: 1; }
-
+ 
 .loading-state, .empty-state {
     display: flex;
     flex-direction: column;
@@ -590,7 +590,7 @@ body {
     color: var(--text-muted);
     gap: 12px;
 }
-
+ 
 .loading-spinner {
     width: 32px; height: 32px;
     border: 2px solid var(--border);
@@ -598,25 +598,25 @@ body {
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
 }
-
+ 
 @keyframes spin { to { transform: rotate(360deg); } }
-
+ 
 .empty-icon {
     font-size: 40px;
     color: var(--text-dim);
     animation: logoPulse 3s ease-in-out infinite;
 }
-
+ 
 .tasks-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 16px;
 }
-
+ 
 /* =============================================
    TASK CARD
    ============================================= */
-
+ 
 .task-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -629,33 +629,33 @@ body {
     animation: cardIn 0.3s ease both;
     cursor: default;
 }
-
+ 
 @keyframes cardIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
-
+ 
 .task-card:hover {
     border-color: #3a3a3a;
     transform: translateY(-2px);
     box-shadow: var(--shadow);
 }
-
+ 
 .task-card.concluida {
     opacity: 0.6;
 }
-
+ 
 .task-card.concluida .task-titulo {
     text-decoration: line-through;
     color: var(--text-muted);
 }
-
+ 
 .task-card-top {
     display: flex;
     align-items: flex-start;
     gap: 12px;
 }
-
+ 
 .task-check {
     width: 22px; height: 22px;
     border-radius: 50%;
@@ -669,13 +669,13 @@ body {
     transition: all 0.2s;
     margin-top: 2px;
 }
-
+ 
 .task-check:hover { border-color: var(--accent); }
 .task-check.checked { background: var(--accent); border-color: var(--accent); }
 .task-check.checked::after { content: '✓'; font-size: 12px; color: var(--bg); font-weight: 700; }
-
+ 
 .task-info { flex: 1; min-width: 0; }
-
+ 
 .task-titulo {
     font-family: var(--font-display);
     font-size: 15px;
@@ -684,7 +684,7 @@ body {
     margin-bottom: 4px;
     line-height: 1.3;
 }
-
+ 
 .task-desc {
     font-size: 13px;
     color: var(--text-muted);
@@ -695,14 +695,14 @@ body {
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
-
+ 
 .task-footer {
     display: flex;
     align-items: center;
     gap: 8px;
     flex-wrap: wrap;
 }
-
+ 
 .task-badge {
     padding: 3px 10px;
     border-radius: 20px;
@@ -710,31 +710,31 @@ body {
     font-weight: 500;
     letter-spacing: 0.3px;
 }
-
+ 
 .badge-trabalho { background: rgba(77, 136, 255, 0.15); color: #7ab0ff; }
 .badge-pessoal { background: rgba(255, 184, 77, 0.15); color: #ffcc77; }
 .badge-estudo { background: rgba(77, 255, 145, 0.15); color: #77ffbb; }
 .badge-outro { background: rgba(160, 160, 160, 0.15); color: #aaa; }
-
+ 
 .task-prioridade {
     padding: 3px 10px;
     border-radius: 20px;
     font-size: 11px;
     font-weight: 500;
 }
-
+ 
 .prioridade-alta { background: rgba(255, 77, 77, 0.15); color: #ff8888; }
 .prioridade-normal { background: rgba(160, 160, 160, 0.1); color: #888; }
 .prioridade-baixa { background: rgba(77, 255, 145, 0.1); color: #88cc99; }
-
+ 
 .task-data {
     margin-left: auto;
     font-size: 11px;
     color: var(--text-dim);
 }
-
+ 
 .task-data.vencida { color: var(--danger); }
-
+ 
 .task-actions {
     display: flex;
     gap: 6px;
@@ -742,7 +742,7 @@ body {
     border-top: 1px solid var(--border);
     padding-top: 12px;
 }
-
+ 
 .task-btn {
     padding: 5px 12px;
     border-radius: 6px;
@@ -754,14 +754,14 @@ body {
     transition: all 0.15s;
     font-family: var(--font-body);
 }
-
+ 
 .task-btn:hover { border-color: var(--text-muted); color: var(--text); }
 .task-btn.del:hover { border-color: var(--danger); color: var(--danger); }
-
+ 
 /* =============================================
    MODAL
    ============================================= */
-
+ 
 .modal-overlay {
     position: fixed;
     inset: 0;
@@ -774,9 +774,9 @@ body {
     padding: 20px;
     animation: fadeIn 0.2s ease;
 }
-
+ 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
+ 
 .modal-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -786,12 +786,12 @@ body {
     box-shadow: var(--shadow-lg);
     animation: modalIn 0.25s ease;
 }
-
+ 
 @keyframes modalIn {
     from { opacity: 0; transform: scale(0.95) translateY(10px); }
     to { opacity: 1; transform: scale(1) translateY(0); }
 }
-
+ 
 .modal-header {
     display: flex;
     align-items: center;
@@ -799,13 +799,13 @@ body {
     padding: 24px 28px 20px;
     border-bottom: 1px solid var(--border);
 }
-
+ 
 .modal-header h2 {
     font-family: var(--font-display);
     font-size: 18px;
     font-weight: 700;
 }
-
+ 
 .modal-close {
     background: transparent;
     border: none;
@@ -815,24 +815,24 @@ body {
     padding: 4px;
     transition: color 0.2s;
 }
-
+ 
 .modal-close:hover { color: var(--text); }
-
+ 
 .modal-body { padding: 24px 28px; }
-
+ 
 .modal-footer {
     display: flex;
     gap: 10px;
     padding: 0 28px 24px;
     justify-content: flex-end;
 }
-
+ 
 .modal-footer .btn-primary { width: auto; padding: 11px 24px; }
-
+ 
 /* =============================================
    TOAST
    ============================================= */
-
+ 
 .toast-container {
     position: fixed;
     bottom: 28px;
@@ -842,7 +842,7 @@ body {
     gap: 10px;
     z-index: 200;
 }
-
+ 
 .toast {
     padding: 14px 20px;
     border-radius: var(--radius-sm);
@@ -856,20 +856,20 @@ body {
     align-items: center;
     gap: 10px;
 }
-
+ 
 @keyframes toastIn {
     from { opacity: 0; transform: translateY(10px) scale(0.95); }
     to { opacity: 1; transform: translateY(0) scale(1); }
 }
-
+ 
 .toast.success { background: #1a2e1a; border: 1px solid rgba(77, 255, 145, 0.3); color: var(--success); }
 .toast.error { background: #2e1a1a; border: 1px solid rgba(255, 77, 77, 0.3); color: var(--danger); }
 .toast.info { background: #1a1e2e; border: 1px solid rgba(77, 136, 255, 0.3); color: #7ab0ff; }
-
+ 
 /* =============================================
    RESPONSIVE
    ============================================= */
-
+ 
 @media (max-width: 768px) {
     .app-page { grid-template-columns: 1fr; }
     .sidebar { display: none; }
@@ -878,4 +878,176 @@ body {
     .form-row { grid-template-columns: 1fr; }
     .header-right { flex-wrap: wrap; }
     .search-wrap input { width: 100%; }
+}
+ 
+/* =============================================
+   NOVAS CATEGORIAS — badges
+   ============================================= */
+ 
+.badge-saude   { background: rgba(255, 100, 100, 0.15); color: #ff9999; }
+.badge-financas { background: rgba(80, 220, 160, 0.15); color: #80ddaa; }
+.badge-familia  { background: rgba(255, 180, 100, 0.15); color: #ffcc88; }
+.badge-viagem   { background: rgba(100, 180, 255, 0.15); color: #88ccff; }
+ 
+/* =============================================
+   VIEW TOGGLE (lista / calendário)
+   ============================================= */
+ 
+.view-toggle {
+    display: flex;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+ 
+.view-btn {
+    padding: 8px 12px;
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    line-height: 1;
+}
+ 
+.view-btn:hover { color: var(--text); background: var(--surface-2); }
+.view-btn.active { background: rgba(212, 240, 0, 0.1); color: var(--accent); }
+ 
+/* =============================================
+   CALENDÁRIO
+   ============================================= */
+ 
+.calendario {
+    flex: 1;
+}
+ 
+.cal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+ 
+.cal-titulo {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+ 
+.cal-nav {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    border-radius: var(--radius-sm);
+    width: 36px; height: 36px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.15s, color 0.15s;
+    line-height: 1;
+}
+ 
+.cal-nav:hover { border-color: var(--accent); color: var(--accent); }
+ 
+.cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+ 
+.cal-dia-semana {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 8px 0;
+}
+ 
+.cal-celula {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    min-height: 90px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    transition: border-color 0.15s;
+    position: relative;
+}
+ 
+.cal-celula.vazia {
+    background: transparent;
+    border-color: transparent;
+}
+ 
+.cal-celula.hoje {
+    border-color: var(--accent);
+    background: rgba(212, 240, 0, 0.04);
+}
+ 
+.cal-celula.hoje .cal-num {
+    color: var(--accent);
+    font-weight: 700;
+}
+ 
+.cal-celula:not(.vazia):hover {
+    border-color: #3a3a3a;
+}
+ 
+.cal-num {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    line-height: 1;
+    margin-bottom: 2px;
+}
+ 
+.cal-tarefas-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+ 
+.cal-tarefa {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    line-height: 1.6;
+}
+ 
+.cal-tarefa:hover { opacity: 0.75; }
+.cal-tarefa.concluida { opacity: 0.45; text-decoration: line-through; }
+ 
+.cal-mais {
+    font-size: 10px;
+    color: var(--text-dim);
+    padding: 1px 4px;
+}
+ 
+@media (max-width: 768px) {
+    .cal-grid { gap: 2px; }
+    .cal-celula { min-height: 60px; padding: 4px; }
+    .cal-tarefa { display: none; }
+    .cal-celula.tem-tarefas::after {
+        content: '●';
+        color: var(--accent);
+        font-size: 8px;
+        position: absolute;
+        bottom: 4px;
+        right: 6px;
+    }
+    .view-toggle { display: flex; }
 }

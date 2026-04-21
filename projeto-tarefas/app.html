@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="src/style.css" />
 </head>
 <body class="app-page">
-
+ 
     <aside class="sidebar">
         <div class="sidebar-logo">
             <span class="logo-icon">✦</span>
@@ -40,7 +40,7 @@
             <button class="btn-logout" onclick="logout()" title="Sair">⎋</button>
         </div>
     </aside>
-
+ 
     <main class="app-main">
         <header class="app-header">
             <div class="header-left">
@@ -52,18 +52,26 @@
                     <span class="search-icon">⌕</span>
                     <input type="text" id="searchInput" placeholder="Pesquisar tarefas..." oninput="pesquisar(this.value)" />
                 </div>
+                <div class="view-toggle">
+                    <button class="view-btn active" onclick="setVista('lista', this)" title="Vista lista">▦</button>
+                    <button class="view-btn" onclick="setVista('calendario', this)" title="Vista calendário">◫</button>
+                </div>
                 <button class="btn-nova" onclick="abrirModal()">+ Nova tarefa</button>
             </div>
         </header>
-
+ 
         <div class="categoria-bar">
             <button class="cat-btn active" onclick="setCategoria('', this)">Todas</button>
             <button class="cat-btn" onclick="setCategoria('trabalho', this)">💼 Trabalho</button>
             <button class="cat-btn" onclick="setCategoria('pessoal', this)">🏠 Pessoal</button>
             <button class="cat-btn" onclick="setCategoria('estudo', this)">📚 Estudo</button>
+            <button class="cat-btn" onclick="setCategoria('saude', this)">🏃 Saúde</button>
+            <button class="cat-btn" onclick="setCategoria('financas', this)">💰 Finanças</button>
+            <button class="cat-btn" onclick="setCategoria('familia', this)">👨‍👩‍👧 Família</button>
+            <button class="cat-btn" onclick="setCategoria('viagem', this)">✈️ Viagem</button>
             <button class="cat-btn" onclick="setCategoria('outro', this)">🔖 Outro</button>
         </div>
-
+ 
         <div class="tasks-area" id="tasksArea">
             <div class="loading-state" id="loadingState">
                 <div class="loading-spinner"></div>
@@ -74,12 +82,24 @@
                 <p>Sem tarefas aqui.</p>
                 <button class="btn-nova-sm" onclick="abrirModal()">Criar a primeira</button>
             </div>
+ 
+            <!-- Vista lista -->
             <div class="tasks-grid" id="tasksGrid"></div>
+ 
+            <!-- Vista calendário -->
+            <div class="calendario hidden" id="calendarioView">
+                <div class="cal-header">
+                    <button class="cal-nav" onclick="navegarMes(-1)">‹</button>
+                    <span class="cal-titulo" id="calTitulo"></span>
+                    <button class="cal-nav" onclick="navegarMes(1)">›</button>
+                </div>
+                <div class="cal-grid" id="calGrid"></div>
+            </div>
         </div>
     </main>
-
+ 
     <div class="toast-container" id="toastContainer"></div>
-
+ 
     <div class="modal-overlay hidden" id="modalOverlay" onclick="fecharModalFora(event)">
         <div class="modal-card" id="modalCard">
             <div class="modal-header">
@@ -103,6 +123,10 @@
                             <option value="trabalho">💼 Trabalho</option>
                             <option value="pessoal">🏠 Pessoal</option>
                             <option value="estudo">📚 Estudo</option>
+                            <option value="saude">🏃 Saúde</option>
+                            <option value="financas">💰 Finanças</option>
+                            <option value="familia">👨‍👩‍👧 Família</option>
+                            <option value="viagem">✈️ Viagem</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -129,7 +153,7 @@
             </div>
         </div>
     </div>
-
+ 
     <script type="module" src="src/app.js"></script>
 </body>
 </html>

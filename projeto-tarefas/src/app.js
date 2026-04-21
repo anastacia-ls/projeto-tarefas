@@ -15,6 +15,21 @@ let filtroCategoria = "";
 let termoPesquisa   = "";
 let editandoId      = null;
 let unsubscribe     = null;
+let vistaAtual      = "lista";
+let calAno          = new Date().getFullYear();
+let calMes          = new Date().getMonth();
+ 
+/* ─── Dados das categorias ───────────────────────────────────────────── */
+const CATEGORIAS = {
+    trabalho: { emoji: "💼", label: "Trabalho" },
+    pessoal:  { emoji: "🏠", label: "Pessoal"  },
+    estudo:   { emoji: "📚", label: "Estudo"   },
+    saude:    { emoji: "🏃", label: "Saúde"    },
+    financas: { emoji: "💰", label: "Finanças" },
+    familia:  { emoji: "👨‍👩‍👧", label: "Família"  },
+    viagem:   { emoji: "✈️", label: "Viagem"   },
+    outro:    { emoji: "🔖", label: "Outro"    },
+};
  
 /* ─── Auth guard ─────────────────────────────────────────────────────── */
 onAuthStateChanged(auth, (user) => {
@@ -26,7 +41,6 @@ onAuthStateChanged(auth, (user) => {
     document.getElementById("userEmail").textContent  = user.email;
     document.getElementById("userAvatar").textContent = (user.displayName || user.email)[0].toUpperCase();
  
-    // Iniciar listener do Firestore
     if (unsubscribe) unsubscribe();
     unsubscribe = iniciarListenerTarefas(user.uid, (tarefas) => {
         todasTarefas = tarefas;
@@ -40,6 +54,28 @@ window.logout = async function () {
     if (unsubscribe) unsubscribe();
     await signOut(auth);
     window.location.replace("index.html");
+};
+ 
+/* ─── Vista (lista / calendário) ─────────────────────────────────────── */
+window.setVista = function (vista, btn) {
+    vistaAtual = vista;
+    document.querySelectorAll(".view-btn").forEach(b => b.classList.remove("active"));
+    if (btn) btn.classList.add("active");
+ 
+    const grid = document.getElementById("tasksGrid");
+    const cal  = document.getElementById("calendarioView");
+    const empty = document.getElementById("emptyState");
+ 
+    if (vista === "calendario") {
+        grid.classList.add("hidden");
+        empty.classList.add("hidden");
+        cal.classList.remove("hidden");
+        renderCalendario();
+    } else {
+        cal.classList.add("hidden");
+        grid.classList.remove("hidden");
+        renderTarefas(tarefasFiltradas());
+    }
 };
  
 /* ─── Filtros e pesquisa ─────────────────────────────────────────────── */
@@ -75,9 +111,9 @@ function tarefasFiltradas() {
     });
 }
  
-/* ─── Render ─────────────────────────────────────────────────────────── */
+/* ─── Render principal ───────────────────────────────────────────────── */
 function atualizarUI() {
-    const total     = todasTarefas.length;
+    const total      = todasTarefas.length;
     const pendentes  = todasTarefas.filter(t => t.estado === "pendente").length;
     const concluidas = todasTarefas.filter(t => t.estado === "concluida").length;
  
@@ -88,7 +124,11 @@ function atualizarUI() {
         total === 0 ? "Nenhuma tarefa ainda" :
         `${pendentes} por fazer · ${concluidas} concluída${concluidas !== 1 ? "s" : ""}`;
  
-    renderTarefas(tarefasFiltradas());
+    if (vistaAtual === "calendario") {
+        renderCalendario();
+    } else {
+        renderTarefas(tarefasFiltradas());
+    }
 }
  
 function renderTarefas(lista) {
@@ -101,7 +141,6 @@ function renderTarefas(lista) {
         empty?.classList.remove("hidden");
         return;
     }
- 
     empty?.classList.add("hidden");
     grid.innerHTML = lista.map(t => cardHTML(t)).join("");
 }
@@ -110,7 +149,7 @@ function cardHTML(t) {
     const hoje      = new Date().toISOString().slice(0, 10);
     const vencida   = t.dataLimite && t.dataLimite < hoje && t.estado !== "concluida";
     const concluida = t.estado === "concluida";
-    const catEmoji  = { trabalho: "💼", pessoal: "🏠", estudo: "📚", outro: "🔖" };
+    const cat       = CATEGORIAS[t.categoria] || CATEGORIAS.outro;
  
     return `
     <div class="task-card ${concluida ? "concluida" : ""}">
@@ -126,7 +165,7 @@ function cardHTML(t) {
         </div>
         <div class="task-footer">
             <span class="task-badge badge-${t.categoria}">
-                ${catEmoji[t.categoria] || "🔖"} ${capitalize(t.categoria)}
+                ${cat.emoji} ${cat.label}
             </span>
             ${t.prioridade !== "normal" ? `
                 <span class="task-prioridade prioridade-${t.prioridade}">
@@ -144,12 +183,76 @@ function cardHTML(t) {
     </div>`;
 }
  
+/* ─── Calendário ─────────────────────────────────────────────────────── */
+const MESES = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho",
+               "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
+const DIAS_SEMANA = ["Dom","Seg","Ter","Qua","Qui","Sex","Sáb"];
+ 
+window.navegarMes = function (delta) {
+    calMes += delta;
+    if (calMes > 11) { calMes = 0;  calAno++; }
+    if (calMes < 0)  { calMes = 11; calAno--; }
+    renderCalendario();
+};
+ 
+function renderCalendario() {
+    const titulo = document.getElementById("calTitulo");
+    const grid   = document.getElementById("calGrid");
+    if (!titulo || !grid) return;
+ 
+    titulo.textContent = `${MESES[calMes]} ${calAno}`;
+ 
+    const lista = tarefasFiltradas().filter(t => t.dataLimite);
+    const tarefasPorDia = {};
+    lista.forEach(t => {
+        if (!tarefasPorDia[t.dataLimite]) tarefasPorDia[t.dataLimite] = [];
+        tarefasPorDia[t.dataLimite].push(t);
+    });
+ 
+    const primeiroDia = new Date(calAno, calMes, 1).getDay();
+    const diasNoMes   = new Date(calAno, calMes + 1, 0).getDate();
+    const hoje        = new Date().toISOString().slice(0, 10);
+ 
+    let html = DIAS_SEMANA.map(d => `<div class="cal-dia-semana">${d}</div>`).join("");
+ 
+    for (let i = 0; i < primeiroDia; i++) {
+        html += `<div class="cal-celula vazia"></div>`;
+    }
+ 
+    for (let d = 1; d <= diasNoMes; d++) {
+        const key     = `${calAno}-${String(calMes + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+        const tarefas = tarefasPorDia[key] || [];
+        const eHoje   = key === hoje;
+ 
+        const badges = tarefas.slice(0, 3).map(t => {
+            const cat = CATEGORIAS[t.categoria] || CATEGORIAS.outro;
+            return `<div class="cal-tarefa badge-${t.categoria} ${t.estado === "concluida" ? "concluida" : ""}"
+                         onclick="abrirEditar('${t.id}')"
+                         title="${escapeHtml(t.titulo)}">
+                        ${cat.emoji} ${escapeHtml(t.titulo)}
+                    </div>`;
+        }).join("");
+ 
+        const mais = tarefas.length > 3
+            ? `<div class="cal-mais">+${tarefas.length - 3} mais</div>` : "";
+ 
+        html += `
+        <div class="cal-celula ${eHoje ? "hoje" : ""} ${tarefas.length ? "tem-tarefas" : ""}">
+            <span class="cal-num">${d}</span>
+            <div class="cal-tarefas-lista">${badges}${mais}</div>
+        </div>`;
+    }
+ 
+    grid.innerHTML = html;
+}
+ 
 /* ─── Modal ──────────────────────────────────────────────────────────── */
-window.abrirModal = function () {
+window.abrirModal = function (dataPreenchida = null) {
     editandoId = null;
     document.getElementById("modalTitulo").textContent     = "Nova tarefa";
     document.getElementById("btnGuardarTexto").textContent = "Criar tarefa";
     limparModal();
+    if (dataPreenchida) document.getElementById("fData").value = dataPreenchida;
     document.getElementById("modalOverlay").classList.remove("hidden");
     setTimeout(() => document.getElementById("fTitulo")?.focus(), 100);
 };
@@ -273,11 +376,6 @@ function escapeHtml(text) {
     const d = document.createElement("div");
     d.textContent = text;
     return d.innerHTML;
-}
- 
-function capitalize(str) {
-    if (!str) return "";
-    return str.charAt(0).toUpperCase() + str.slice(1);
 }
  
 function formatarData(iso) {
