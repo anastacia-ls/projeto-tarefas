@@ -1051,3 +1051,235 @@ body {
     }
     .view-toggle { display: flex; }
 }
+/* =============================================
+   NOVAS CATEGORIAS
+   ============================================= */
+.badge-saude    { background: rgba(255, 100, 100, 0.15); color: #ff9999; }
+.badge-financas { background: rgba(80, 220, 160, 0.15);  color: #80ddaa; }
+.badge-familia  { background: rgba(255, 180, 100, 0.15); color: #ffcc88; }
+.badge-viagem   { background: rgba(100, 180, 255, 0.15); color: #88ccff; }
+
+/* =============================================
+   VIEW TOGGLE
+   ============================================= */
+.view-toggle {
+    display: flex;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+.view-btn {
+    padding: 8px 12px;
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    line-height: 1;
+}
+.view-btn:hover  { color: var(--text); background: var(--surface-2); }
+.view-btn.active { background: rgba(212, 240, 0, 0.1); color: var(--accent); }
+
+/* =============================================
+   CALENDÁRIO
+   ============================================= */
+.calendario { flex: 1; }
+.cal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.cal-titulo {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+}
+.cal-nav {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    border-radius: var(--radius-sm);
+    width: 36px; height: 36px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.15s, color 0.15s;
+}
+.cal-nav:hover { border-color: var(--accent); color: var(--accent); }
+.cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+.cal-dia-semana {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 8px 0;
+}
+.cal-celula {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    min-height: 90px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    transition: border-color 0.15s;
+    position: relative;
+}
+.cal-celula.vazia   { background: transparent; border-color: transparent; }
+.cal-celula.hoje    { border-color: var(--accent); background: rgba(212,240,0,0.04); }
+.cal-celula.hoje .cal-num { color: var(--accent); font-weight: 700; }
+.cal-celula:not(.vazia):hover { border-color: #3a3a3a; }
+.cal-num { font-size: 12px; font-weight: 500; color: var(--text-muted); margin-bottom: 2px; }
+.cal-tarefas-lista { display: flex; flex-direction: column; gap: 3px; }
+.cal-tarefa {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    line-height: 1.6;
+}
+.cal-tarefa:hover   { opacity: 0.75; }
+.cal-tarefa.concluida { opacity: 0.45; text-decoration: line-through; }
+.cal-mais { font-size: 10px; color: var(--text-dim); padding: 1px 4px; }
+
+/* =============================================
+   PARTILHA E ATRIBUIÇÃO
+   ============================================= */
+.task-card.partilhada {
+    border-left: 3px solid rgba(122, 176, 255, 0.5);
+}
+.task-atribuido {
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    background: rgba(122, 176, 255, 0.12);
+    color: #7ab0ff;
+}
+.task-atribuido.atribuida-por {
+    background: rgba(255, 184, 77, 0.12);
+    color: #ffb84d;
+}
+.label-hint {
+    font-size: 10px;
+    color: var(--text-dim);
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-left: 6px;
+}
+
+/* =============================================
+   ANEXOS
+   ============================================= */
+.anexos-drop {
+    border: 1px dashed var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 13px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+}
+.anexos-drop:hover {
+    border-color: var(--accent);
+    color: var(--text);
+}
+.anexos-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 8px;
+}
+.anexo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 6px 10px;
+    font-size: 12px;
+}
+.anexo-item.pendente { border-color: rgba(212, 240, 0, 0.2); }
+.anexo-nome {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text);
+    text-decoration: none;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.anexo-nome:hover { color: var(--accent); }
+.anexo-tamanho { color: var(--text-dim); font-size: 10px; margin-left: 4px; }
+.anexo-remover {
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    transition: color 0.15s;
+}
+.anexo-remover:hover { color: var(--danger); }
+
+/* Anexos no card da tarefa */
+.task-anexos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 6px 0;
+    border-top: 1px solid var(--border);
+}
+.anexo-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: border-color 0.15s, color 0.15s;
+    max-width: 160px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.anexo-chip:hover { border-color: var(--accent); color: var(--accent); }
+
+@media (max-width: 768px) {
+    .cal-grid  { gap: 2px; }
+    .cal-celula { min-height: 60px; padding: 4px; }
+    .cal-tarefa { display: none; }
+    .cal-celula.tem-tarefas::after {
+        content: '●';
+        color: var(--accent);
+        font-size: 8px;
+        position: absolute;
+        bottom: 4px; right: 6px;
+    }
+}

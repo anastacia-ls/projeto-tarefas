@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="src/style.css" />
 </head>
 <body class="app-page">
- 
+
     <aside class="sidebar">
         <div class="sidebar-logo">
             <span class="logo-icon">✦</span>
@@ -40,7 +40,7 @@
             <button class="btn-logout" onclick="logout()" title="Sair">⎋</button>
         </div>
     </aside>
- 
+
     <main class="app-main">
         <header class="app-header">
             <div class="header-left">
@@ -59,7 +59,7 @@
                 <button class="btn-nova" onclick="abrirModal()">+ Nova tarefa</button>
             </div>
         </header>
- 
+
         <div class="categoria-bar">
             <button class="cat-btn active" onclick="setCategoria('', this)">Todas</button>
             <button class="cat-btn" onclick="setCategoria('trabalho', this)">💼 Trabalho</button>
@@ -71,7 +71,7 @@
             <button class="cat-btn" onclick="setCategoria('viagem', this)">✈️ Viagem</button>
             <button class="cat-btn" onclick="setCategoria('outro', this)">🔖 Outro</button>
         </div>
- 
+
         <div class="tasks-area" id="tasksArea">
             <div class="loading-state" id="loadingState">
                 <div class="loading-spinner"></div>
@@ -82,11 +82,7 @@
                 <p>Sem tarefas aqui.</p>
                 <button class="btn-nova-sm" onclick="abrirModal()">Criar a primeira</button>
             </div>
- 
-            <!-- Vista lista -->
             <div class="tasks-grid" id="tasksGrid"></div>
- 
-            <!-- Vista calendário -->
             <div class="calendario hidden" id="calendarioView">
                 <div class="cal-header">
                     <button class="cal-nav" onclick="navegarMes(-1)">‹</button>
@@ -97,9 +93,9 @@
             </div>
         </div>
     </main>
- 
+
     <div class="toast-container" id="toastContainer"></div>
- 
+
     <div class="modal-overlay hidden" id="modalOverlay" onclick="fecharModalFora(event)">
         <div class="modal-card" id="modalCard">
             <div class="modal-header">
@@ -113,7 +109,7 @@
                 </div>
                 <div class="form-group">
                     <label>Descrição</label>
-                    <textarea id="fDescricao" placeholder="Detalhes adicionais..." rows="3" maxlength="500"></textarea>
+                    <textarea id="fDescricao" placeholder="Detalhes adicionais..." rows="2" maxlength="500"></textarea>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
@@ -138,10 +134,28 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label>Data limite</label>
-                    <input type="date" id="fData" />
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Data limite</label>
+                        <input type="date" id="fData" />
+                    </div>
+                    <div class="form-group">
+                        <label>Atribuir a (email)</label>
+                        <input type="email" id="fAtribuido" placeholder="colega@email.com" />
+                    </div>
                 </div>
+
+                <!-- Anexos -->
+                <div class="form-group">
+                    <label>Anexos <span class="label-hint">máx. 500 KB por ficheiro</span></label>
+                    <div class="anexos-drop" onclick="acionarInputFicheiro()">
+                        <span>📎 Clica para adicionar ficheiros</span>
+                    </div>
+                    <input type="file" id="fFicheiros" multiple style="display:none"
+                           onchange="onFicheirosEscolhidos(this)" />
+                    <div class="anexos-lista" id="anexosModal"></div>
+                </div>
+
                 <div class="feedback-msg" id="modalFeedback"></div>
             </div>
             <div class="modal-footer">
@@ -153,7 +167,7 @@
             </div>
         </div>
     </div>
- 
+
     <script type="module" src="src/app.js"></script>
 </body>
 </html>
